@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🫀 HeartGuard - Heart Attack Risk Detection & Medical Management System
 
 **HeartGuard** is an advanced full-stack medical intelligence web application built with **Python Flask**, **Scikit-Learn Machine Learning**, **100% Offline SQLite Database**, and a **Dedicated Medical AI Assistant**.
@@ -127,3 +128,6 @@ Run the integration test suite to verify all routes, APIs, authentication, and d
 ```bash
 python test_app.py
 ```
+=======
+# Heart-Guard
+>>>>>>> c44ff2e2568d84322ae610336d77d12de494b33d
