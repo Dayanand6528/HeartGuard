@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}Contact Support - HeartGuard Medical System{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <span class="badge-risk badge-low" style="margin-bottom: 0.5rem;">24/7 Support</span>
+    <h1 class="page-title">Get in Touch with HeartGuard</h1>
+    <p class="page-subtitle">Have questions about clinical predictions, system deployment, or hospital integration? Send us a message.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; max-width: 1100px; margin: 0 auto 4rem;">
+    <!-- Contact Form -->
+    <div class="glass-panel" style="padding: 2.5rem;">
+        <h3 style="font-size: 1.5rem; margin-bottom: 1.5rem; color: var(--primary-cyan);"><i class="fa-solid fa-paper-plane"></i> Send Us a Message</h3>
+
+        <form action="{{ url_for('contact') }}" method="POST">
+            <div class="form-group">
+                <label class="form-label">Your Full Name *</label>
+                <input type="text" name="name" class="form-control" placeholder="e.g. Dr. Alex Mercer" value="{{ current_user.name if current_user else '' }}" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" name="email" class="form-control" placeholder="e.g. alex@hospital.org" value="{{ current_user.email if current_user else '' }}" required>
+            </div>
+            <div class="form-group">
+                <label class="form-label">Subject</label>
+                <input type="text" name="subject" class="form-control" placeholder="e.g. Hospital Integration Inquiry">
+            </div>
+            <div class="form-group">
+                <label class="form-label">Message *</label>
+                <textarea name="message" class="form-control" rows="5" placeholder="Write your query or feedback here..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-cyan" style="width: 100%; padding: 0.85rem; font-size: 1.05rem;">
+                <i class="fa-solid fa-paper-plane"></i> Submit Inquiry
+            </button>
+        </form>
+    </div>
+
+    <!-- Emergency & Direct Information -->
+    <div>
+        <div class="glass-card" style="margin-bottom: 2rem; border-color: rgba(255, 46, 99, 0.4);">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <i class="fa-solid fa-truck-medical" style="font-size: 2rem; color: var(--pulse-red);"></i>
+                <div>
+                    <h4 style="font-size: 1.2rem; color: var(--pulse-red);">Cardiac Emergency Assistance</h4>
+                    <span style="font-size: 0.85rem; color: var(--text-muted);">Available 24 Hours / 7 Days</span>
+                </div>
+            </div>
+            <p style="color: var(--text-muted); font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem;">
+                If you or someone near you is experiencing severe chest tightness, left arm radiation, or fainting, immediately dial national emergency numbers:
+            </p>
+            <div style="display: flex; gap: 1rem;">
+                <a href="tel:108" class="btn btn-red" style="flex: 1;"><i class="fa-solid fa-phone"></i> Call 108 Emergency</a>
+                <a href="tel:911" class="btn btn-outline" style="flex: 1;"><i class="fa-solid fa-phone"></i> Call 911</a>
+            </div>
+        </div>
+
+        <div class="glass-card">
+            <h4 style="font-size: 1.2rem; margin-bottom: 1.25rem; color: var(--primary-cyan);"><i class="fa-solid fa-building-user"></i> Hospital & Clinic Hub</h4>
+            <div style="display: flex; flex-direction: column; gap: 1rem; color: var(--text-muted); font-size: 0.92rem;">
+                <div>
+                    <strong style="color: var(--text-main);"><i class="fa-solid fa-location-dot" style="color: var(--primary-cyan);"></i> Medical Center Address:</strong><br>
+                    HeartGuard Cardiology Research Tower, Suite 402, Medical City.
+                </div>
+                <div>
+                    <strong style="color: var(--text-main);"><i class="fa-solid fa-envelope" style="color: var(--accent-green);"></i> Clinical Support Email:</strong><br>
+                    support@heartguard-medical.org
+                </div>
+                <div>
+                    <strong style="color: var(--text-main);"><i class="fa-solid fa-shield-halved" style="color: var(--accent-warning);"></i> Security Status:</strong><br>
+                    Encrypted Medical Gateway: <span style="color: var(--accent-green); font-weight: 600;">Active & Protected</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

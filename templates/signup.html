@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% block title %}Register Account - HeartGuard Portal{% endblock %}
+
+{% block content %}
+<div style="max-width: 520px; margin: 2rem auto 4rem;">
+    <div class="glass-panel" style="padding: 2.5rem;">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <i class="fa-solid fa-user-plus" style="font-size: 3rem; color: var(--pulse-red); margin-bottom: 0.75rem;"></i>
+            <h2 style="font-size: 1.8rem; margin-bottom: 0.25rem;">Create New Account</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">Join HeartGuard to manage reports, consult doctors, and track health history</p>
+        </div>
+
+        <form action="{{ url_for('signup') }}" method="POST">
+            <div class="form-group">
+                <label class="form-label">Account Category / Role</label>
+                <select name="role" class="form-select">
+                    <option value="patient">Patient (Individual User)</option>
+                    <option value="doctor">Medical Doctor / Cardiologist</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Full Name *</label>
+                <input type="text" name="name" class="form-control" placeholder="e.g. Dr. Emily Watson" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Email Address *</label>
+                <input type="email" name="email" class="form-control" placeholder="emily@hospital.com" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Phone Number</label>
+                <input type="tel" name="phone" class="form-control" placeholder="+1 800 555 0199">
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Password *</label>
+                <input type="password" name="password" class="form-control" placeholder="Create strong password" required>
+            </div>
+
+            <button type="submit" class="btn btn-red" style="width: 100%; padding: 0.85rem; font-size: 1.05rem; margin-top: 1rem;">
+                <i class="fa-solid fa-user-check"></i> Complete Registration
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+            Already registered? <a href="{{ url_for('login') }}" style="color: var(--primary-cyan); text-decoration: none; font-weight: 600;">Sign In Here</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

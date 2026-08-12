@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}Technologies Used - HeartGuard System Stack{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <span class="badge-risk badge-low" style="margin-bottom: 0.5rem;">System Architecture</span>
+    <h1 class="page-title">Technologies & Stack Breakdown</h1>
+    <p class="page-subtitle">A deep dive into the 100% offline technologies powering HeartGuard's prediction engine, database, and medical AI chatbot.</p>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+    <div class="glass-card">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+            <i class="fa-brands fa-python" style="font-size: 2.5rem; color: var(--primary-cyan);"></i>
+            <div>
+                <h3 style="font-size: 1.25rem;">Python Flask Backend</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Core Server & REST API</span>
+            </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+            Flask provides lightweight, high-performance routing for web pages, JSON REST endpoints, session authentication, and direct integration with Python ML packages.
+        </p>
+    </div>
+
+    <div class="glass-card">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-microchip" style="font-size: 2.5rem; color: var(--pulse-red);"></i>
+            <div>
+                <h3 style="font-size: 1.25rem;">Scikit-Learn ML Model</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Random Forest Classifier</span>
+            </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+            Random Forest Ensemble algorithm with 150 decision trees trained on Kaggle UCI heart disease features. Features are normalized using Scikit-Learn's <code style="color: var(--primary-cyan);">StandardScaler</code>.
+        </p>
+    </div>
+
+    <div class="glass-card">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-server" style="font-size: 2.5rem; color: var(--accent-warning);"></i>
+            <div>
+                <h3 style="font-size: 1.25rem;">XAMPP MySQL Database</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Dual MySQL & SQLite Driver</span>
+            </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+            Connects to XAMPP MySQL server (<code style="color: var(--primary-cyan);">localhost:3306</code>) storing users, predictions, contact forms, and chat logs. Includes automatic fallback to SQLite when XAMPP is offline.
+        </p>
+    </div>
+
+    <div class="glass-card">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-robot" style="font-size: 2.5rem; color: var(--accent-green);"></i>
+            <div>
+                <h3 style="font-size: 1.25rem;">Offline Medical AI Assistant</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Strictly Medical Domain AI</span>
+            </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+            Local offline neural AI engine integrated via secure local REST API. Programmed to strictly answer medical and health queries while rejecting non-medical requests. Zero external cloud API calls!
+        </p>
+    </div>
+
+    <div class="glass-card">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+            <i class="fa-brands fa-css3-alt" style="font-size: 2.5rem; color: var(--accent-blue);"></i>
+            <div>
+                <h3 style="font-size: 1.25rem;">HTML5 & Vanilla CSS3</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Glassmorphism Design System</span>
+            </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+            Clean custom Vanilla CSS with custom properties, smooth CSS animations (heartbeat, pulse waves), glassmorphism backdrop blurs, and mobile responsive flex/grid layouts.
+        </p>
+    </div>
+
+    <div class="glass-card">
+        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.25rem;">
+            <i class="fa-solid fa-user-shield" style="font-size: 2.5rem; color: var(--primary-cyan);"></i>
+            <div>
+                <h3 style="font-size: 1.25rem;">Role-Based Authentication</h3>
+                <span style="font-size: 0.8rem; color: var(--text-muted);">Patient, Doctor, Admin</span>
+            </div>
+        </div>
+        <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;">
+            Secure session handling with Werkzeug SHA-256 password hashing. Isolates views for Patients (risk reports), Doctors (clinical review), and Administrators (system logs).
+        </p>
+    </div>
+</div>
+{% endblock %}

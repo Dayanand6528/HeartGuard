@@ -1,0 +1,243 @@
+{% extends 'base.html' %}
+
+{% block title %}HeartGuard - Intelligent Heart Attack Risk Detection System{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div>
+        <div style="display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.4rem 1rem; background: rgba(0, 240, 255, 0.1); border: 1px solid var(--primary-cyan); border-radius: var(--radius-full); margin-bottom: 1.5rem; font-size: 0.85rem; color: var(--primary-cyan); font-weight: 600;">
+            <i class="fa-solid fa-shield-halved"></i> Clinical Diagnostics Engine
+        </div>
+        <h1 class="hero-title">Protecting Hearts with Advanced Clinical Precision.</h1>
+        <p class="hero-subtitle">
+            HeartGuard evaluates clinical health report parameters—including blood pressure, cholesterol, resting ECG, and exercise angina—to detect potential heart attack risk before symptoms become critical.
+        </p>
+
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+            <a href="#quickRiskCalc" class="btn btn-red" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;">
+                <i class="fa-solid fa-stethoscope"></i> Start Heart Risk Test
+            </a>
+            <a href="{{ url_for('dedicated_chatbot') }}" class="btn btn-cyan" style="font-size: 1.05rem; padding: 0.85rem 1.75rem;">
+                <i class="fa-solid fa-robot"></i> Consult Medical Chatbot
+            </a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat-item">
+                <span class="stat-value">High</span>
+                <span class="stat-label">Diagnostic Precision</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">14</span>
+                <span class="stat-label">Clinical Features</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-value">3 Roles</span>
+                <span class="stat-label">Doctor, Admin, Patient</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero-visual">
+        <div class="glass-card ecg-card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+                <span style="font-weight: 700; color: var(--text-main); font-size: 1.1rem;"><i class="fa-solid fa-heart-circle-bolt" style="color: var(--pulse-red);"></i> Real-Time Cardiology Monitor</span>
+                <span class="badge-risk badge-low">Live Status: Normal</span>
+            </div>
+            <svg class="ecg-wave" viewBox="0 0 500 120" preserveAspectRatio="none">
+                <path d="M 0,60 L 100,60 L 120,60 L 130,20 L 145,100 L 160,30 L 175,70 L 185,60 L 250,60 L 270,60 L 280,10 L 295,110 L 310,20 L 325,75 L 335,60 L 500,60" fill="none" stroke="#00f0ff" stroke-width="3" stroke-linecap="round"/>
+            </svg>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 1rem; font-size: 0.85rem; color: var(--text-muted);">
+                <div><i class="fa-solid fa-gauge-high" style="color: var(--primary-cyan);"></i> Resting BP: <strong style="color: var(--text-main);">120 mmHg</strong></div>
+                <div><i class="fa-solid fa-droplet" style="color: var(--pulse-red);"></i> Cholesterol: <strong style="color: var(--text-main);">195 mg/dL</strong></div>
+                <div><i class="fa-solid fa-wave-square" style="color: var(--accent-green);"></i> Resting ECG: <strong style="color: var(--text-main);">Normal</strong></div>
+                <div><i class="fa-solid fa-bolt" style="color: var(--accent-warning);"></i> Max Heart Rate: <strong style="color: var(--text-main);">165 bpm</strong></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Heart Attack Risk Test Form -->
+<section id="quickRiskCalc" style="margin-top: 3rem;">
+    <div class="glass-panel" style="padding: 2.5rem;">
+        <div style="text-align: center; margin-bottom: 2.5rem;">
+            <span class="badge-risk badge-low" style="margin-bottom: 0.5rem;">Clinical Evaluation</span>
+            <h2 class="page-title" style="font-size: 2rem;">Heart Attack Risk Calculator</h2>
+            <p class="page-subtitle">Enter key health parameters to receive instant risk probability analysis.</p>
+        </div>
+
+        <form id="predictionForm">
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem;">
+                <div class="form-group">
+                    <label class="form-label">Patient Name (Optional)</label>
+                    <input type="text" name="patient_name" class="form-control" placeholder="e.g. John Doe" value="{{ current_user.name if current_user else '' }}">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Age (Years)</label>
+                    <input type="number" name="age" class="form-control" min="18" max="100" value="52" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Biological Sex</label>
+                    <select name="sex" class="form-select">
+                        <option value="1">Male</option>
+                        <option value="0">Female</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Chest Pain Type (cp)</label>
+                    <select name="cp" class="form-select">
+                        <option value="0">Typical Angina (Pressure/Squeezing)</option>
+                        <option value="1">Atypical Angina</option>
+                        <option value="2">Non-Anginal Pain</option>
+                        <option value="3">Asymptomatic</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Resting Blood Pressure (mm Hg)</label>
+                    <input type="number" name="trestbps" class="form-control" value="130" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Serum Cholesterol (mg/dl)</label>
+                    <input type="number" name="chol" class="form-control" value="210" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Fasting Blood Sugar > 120 mg/dl</label>
+                    <select name="fbs" class="form-select">
+                        <option value="0">No (≤ 120 mg/dl)</option>
+                        <option value="1">Yes (> 120 mg/dl)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Resting Electrocardiogram (restecg)</label>
+                    <select name="restecg" class="form-select">
+                        <option value="0">Normal</option>
+                        <option value="1">ST-T Wave Abnormality</option>
+                        <option value="2">Left Ventricular Hypertrophy</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Maximum Heart Rate Achieved (thalach)</label>
+                    <input type="number" name="thalach" class="form-control" value="150" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Exercise Induced Angina (exang)</label>
+                    <select name="exang" class="form-select">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">ST Depression (oldpeak)</label>
+                    <input type="number" step="0.1" name="oldpeak" class="form-control" value="1.0" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">ST Slope (slope)</label>
+                    <select name="slope" class="form-select">
+                        <option value="1">Flat</option>
+                        <option value="2">Upsloping</option>
+                        <option value="0">Downsloping</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Number of Major Vessels (ca)</label>
+                    <select name="ca" class="form-select">
+                        <option value="0">0 Vessels</option>
+                        <option value="1">1 Vessel</option>
+                        <option value="2">2 Vessels</option>
+                        <option value="3">3 Vessels</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Thalassemia (thal)</label>
+                    <select name="thal" class="form-select">
+                        <option value="2">Normal</option>
+                        <option value="1">Fixed Defect</option>
+                        <option value="3">Reversable Defect</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button type="submit" class="btn btn-red" style="padding: 0.95rem 2.5rem; font-size: 1.1rem;">
+                    <i class="fa-solid fa-heart-pulse"></i> Predict Heart Attack Risk
+                </button>
+            </div>
+        </form>
+    </div>
+</section>
+
+<!-- Features Grid -->
+<section style="margin-top: 5rem;">
+    <div class="page-header">
+        <h2 class="page-title">Comprehensive Cardiology Care Platform</h2>
+        <p class="page-subtitle">Built to connect Patients, Doctors, and System Administrators with intelligent diagnostic tools.</p>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+        <div class="glass-card">
+            <i class="fa-solid fa-brain" style="font-size: 2.2rem; color: var(--primary-cyan); margin-bottom: 1rem;"></i>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Clinical Diagnostic Engine</h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.5;">
+                Advanced evaluation algorithms analyzing standard cardiovascular biomarkers to deliver fast risk probability metrics.
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <i class="fa-solid fa-user-doctor" style="font-size: 2.2rem; color: var(--accent-green); margin-bottom: 1rem;"></i>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">3-Tier Portal Access</h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.5;">
+                Dedicated portals for Patients (history & reports), Doctors (high-risk triage & notes), and Admins (database & user management).
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <i class="fa-solid fa-comments" style="font-size: 2.2rem; color: var(--pulse-red); margin-bottom: 1rem;"></i>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Medical AI Assistant</h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.5;">
+                Immediate answers to cardiac emergency questions, blood pressure guides, and symptom analysis.
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <i class="fa-solid fa-database" style="font-size: 2.2rem; color: var(--accent-warning); margin-bottom: 1rem;"></i>
+            <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Secure Data Storage</h3>
+            <p style="color: var(--text-muted); font-size: 0.92rem; line-height: 1.5;">
+                Reliable data management system protecting patient records and clinical history.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Prediction Results Modal -->
+<div id="predictionResultModal" style="display: none; position: fixed; inset: 0; background: rgba(4, 9, 20, 0.85); backdrop-filter: blur(12px); z-index: 3000; justify-content: center; align-items: center; padding: 1.5rem;">
+    <div class="glass-panel" style="max-width: 600px; width: 100%; padding: 2.5rem; position: relative; border-color: rgba(0, 240, 255, 0.4);">
+        <i class="fa-solid fa-xmark" onclick="closeModal('predictionResultModal')" style="position: absolute; top: 1.5rem; right: 1.5rem; cursor: pointer; font-size: 1.3rem; color: var(--text-muted);"></i>
+
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+            <i class="fa-solid fa-heart-circle-check" style="font-size: 3rem; color: var(--primary-cyan); margin-bottom: 0.75rem;"></i>
+            <h3 style="font-size: 1.75rem;">Cardiovascular Risk Assessment</h3>
+        </div>
+
+        <div style="display: flex; justify-content: space-around; align-items: center; background: rgba(255, 255, 255, 0.04); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem;">
+            <div style="text-align: center;">
+                <span style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Risk Score</span>
+                <span id="resRiskScore" style="font-size: 2.5rem; font-weight: 800; color: var(--primary-cyan);">0%</span>
+            </div>
+            <div style="text-align: center;">
+                <span style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.25rem;">Risk Stratification</span>
+                <span id="resRiskLevel" class="badge-risk badge-low">Low Risk</span>
+            </div>
+        </div>
+
+        <h4 style="margin-bottom: 0.75rem; color: var(--text-main); font-weight: 600;"><i class="fa-solid fa-clipboard-check" style="color: var(--accent-green);"></i> Key Recommendations & Action Items:</h4>
+        <ul id="resRecsList" style="color: var(--text-muted); padding-left: 1.25rem; font-size: 0.95rem; line-height: 1.6; margin-bottom: 2rem;">
+        </ul>
+
+        <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+            <a href="{{ url_for('dedicated_chatbot') }}" class="btn btn-outline"><i class="fa-solid fa-comments"></i> Ask AI Bot</a>
+            <button onclick="closeModal('predictionResultModal')" class="btn btn-cyan">Close Report</button>
+        </div>
+    </div>
+</div>
+{% endblock %}

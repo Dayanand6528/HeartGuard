@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Patient Portal - HeartGuard{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div>
+        <span class="badge-risk badge-low" style="margin-bottom: 0.5rem;">Patient Portal</span>
+        <h1 style="font-size: 2.2rem; font-weight: 800;">Welcome, {{ user.name }}</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Track your clinical assessments and view medical doctor consultation notes.</p>
+    </div>
+    <a href="{{ url_for('home') }}#quickRiskCalc" class="btn btn-red"><i class="fa-solid fa-heart-pulse"></i> New Heart Risk Test</a>
+</div>
+
+<!-- History Table -->
+<div class="glass-panel" style="padding: 2rem; margin-bottom: 3rem;">
+    <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--primary-cyan);"><i class="fa-solid fa-clock-rotate-left"></i> Your Cardiovascular Prediction History</h3>
+
+    {% if records %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date & Time</th>
+                        <th>Age</th>
+                        <th>Resting BP</th>
+                        <th>Cholesterol</th>
+                        <th>ECG</th>
+                        <th>Risk Score</th>
+                        <th>Risk Level</th>
+                        <th>Doctor Clinical Notes</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in records %}
+                        <tr>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">{{ r.created_at }}</td>
+                            <td>{{ r.age }} Yrs</td>
+                            <td>{{ r.trestbps }} mm Hg</td>
+                            <td>{{ r.chol }} mg/dl</td>
+                            <td>{{ 'Normal' if r.restecg == 0 else 'Abnormal ST' }}</td>
+                            <td><strong style="color: var(--primary-cyan);">{{ r.risk_percentage }}%</strong></td>
+                            <td>
+                                <span class="badge-risk {% if r.prediction == 1 %}badge-high{% else %}badge-low{% endif %}">
+                                    {{ r.risk_level }}
+                                </span>
+                            </td>
+                            <td style="max-width: 250px;">
+                                {% if r.doctor_notes %}
+                                    <div style="background: rgba(0, 240, 255, 0.08); border-left: 3px solid var(--primary-cyan); padding: 0.5rem 0.75rem; border-radius: 4px; font-size: 0.85rem;">
+                                        <strong style="color: var(--primary-cyan);">Dr. {{ r.doctor_name or 'Cardiologist' }}:</strong><br>
+                                        {{ r.doctor_notes }}
+                                    </div>
+                                {% else %}
+                                    <span style="color: var(--text-muted); font-size: 0.85rem; italic">Pending Doctor Review</span>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <div style="text-align: center; padding: 3rem 1rem; color: var(--text-muted);">
+            <i class="fa-solid fa-notes-medical" style="font-size: 3rem; margin-bottom: 1rem; color: var(--border-glass);"></i>
+            <p style="font-size: 1.1rem; margin-bottom: 1rem;">No heart risk assessments submitted yet.</p>
+            <a href="{{ url_for('home') }}#quickRiskCalc" class="btn btn-cyan">Run First Heart Attack Risk Test</a>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,160 @@
+{
+  "categories": [
+    {
+      "department": "General Assistant & Wellness",
+      "intents": [
+        {
+          "id": "greetings",
+          "keywords": ["hi", "hello", "hey", "good morning", "good evening", "greetings", "who are you", "what can you do", "help me", "start"],
+          "synonyms": ["hi doc", "hello bot", "bot info"],
+          "department": "General Assistant",
+          "urgency": "Info",
+          "title": "Welcome to HeartGuard Medical GPT",
+          "content": "Hello! 👋 I am HeartGuard Medical GPT, your offline healthcare and general wellness assistant.\n\nCapabilities:\n1. 🩺 Biomarker Analysis: Type lab values like BP 140/90, sugar 180, cholesterol 240, or SpO2 92% for instant medical interpretation.\n2. 🫀 Cardiology & ECG: Heart attack warning signs, angina, arrhythmia, chest pain types, ST depression.\n3. 🧠 Neurology & Pulmonology: Stroke F.A.S.T protocol, breathlessness, oxygen levels, migraine.\n4. 💊 Pharmacology: Medications (Aspirin, Statins, Beta-blockers, ACE inhibitors).\n5. 🥗 General Wellness: Stress relief, sleep hygiene, fever triage, hydration, and nutrition."
+        },
+        {
+          "id": "fever_cold_flu",
+          "keywords": ["fever", "temperature", "cold", "flu", "chills", "body ache", "cough", "paracetamol", "tylenol", "high temp"],
+          "synonyms": ["viral infection", "feeling feverish", "hot body"],
+          "department": "General Medicine / Family Care",
+          "urgency": "Moderate",
+          "title": "Fever, Cold & Flu Care Protocol",
+          "content": "A fever is a body temperature ≥100.4°F (38°C), indicating your immune system is fighting an infection.\n\nHome Care Steps:\n• 💧 Hydration: Drink water, warm broths, and oral rehydration fluids.\n• 🛌 Rest: Allow body energy to combat viral activity.\n• 💊 Fever Reducers: Over-the-counter Paracetamol (500mg) or Acetaminophen as per physician guidelines.\n\n🚨 Red Flags: Seek immediate medical care if fever exceeds 103°F (39.4°C), lasts >3 days, or is accompanied by stiff neck, confusion, or difficulty breathing."
+        },
+        {
+          "id": "stress_anxiety",
+          "keywords": ["stress", "anxiety", "panic attack", "nervous", "tension", "mental health", "worry", "fear", "fast heart rate stress"],
+          "synonyms": ["overwhelmed", "panic feeling", "anxious"],
+          "department": "Behavioral Health / General Practice",
+          "urgency": "Self-Care / Support",
+          "title": "Stress & Anxiety Reduction Techniques",
+          "content": "Chronic stress elevates cortisol and epinephrine, increasing long-term hypertension and cardiac workload.\n\nImmediate Relief Exercises:\n1. 🫁 4-7-8 Breathing: Inhale through nose for 4s, hold for 7s, exhale slowly through mouth for 8s.\n2. 🧘 Grounding (5-4-3-2-1 Technique): Identify 5 things you see, 4 you feel, 3 you hear, 2 you smell, 1 you taste.\n3. 🏃 Physical Activity: A 15-minute walk burns off excess adrenaline.\n\nIf anxiety causes severe chest pressure or breathlessness, rule out cardiac issues at an emergency clinic."
+        },
+        {
+          "id": "sleep_insomnia",
+          "keywords": ["sleep", "insomnia", "can't sleep", "sleep quality", "sleepless", "tired", "fatigue", "exhaustion", "sleep hygiene"],
+          "synonyms": ["no sleep", "poor sleep"],
+          "department": "Sleep Medicine / General Wellness",
+          "urgency": "Preventive Care",
+          "title": "Sleep Hygiene & Rest Recovery",
+          "content": "Adults require 7 to 9 hours of quality sleep nightly for cellular repair and cardiovascular regulation.\n\nSleep Optimization Tips:\n• 📵 Screen Time: Avoid blue light screens 1 hour before bedtime.\n• ☕ Caffeine Limit: Stop caffeine intake after 2:00 PM.\n• 🛏️ Environment: Keep bedroom cool (65-68°F / 18-20°C) and completely dark.\n• ⏰ Consistency: Maintain identical wake-up times every day."
+        },
+        {
+          "id": "gastrointestinal_gerd",
+          "keywords": ["acid reflux", "gerd", "heartburn", "stomach pain", "gas", "indigestion", "bloating", "gastritis", "acidity"],
+          "synonyms": ["stomach burn", "acid in throat"],
+          "department": "Gastroenterology",
+          "urgency": "Moderate",
+          "title": "Gastroesophageal Reflux (GERD) vs Cardiac Discomfort",
+          "content": "Acid reflux causes a burning feeling behind the breastbone (heartburn), often worsening after heavy meals or lying down.\n\nDifferentiating Acid Reflux from Heart Attack:\n• GERD: Relieved by antacids or upright posture; burning sensation.\n• 🚨 Heart Attack: Deep pressure, crushing sensation, radiating pain to left arm/jaw, sweating, unrelated to posture.\n\nTip: Avoid spicy/fatty foods, do not lie down within 3 hours after eating."
+        }
+      ]
+    },
+    {
+      "department": "Cardiology & Vascular Medicine",
+      "intents": [
+        {
+          "id": "heart_attack_emergency",
+          "keywords": ["heart attack", "myocardial infarction", "severe chest pain", "chest pressure", "radiating arm pain", "jaw pain", "cold sweat", "crushing pain", "cardiac arrest", "elephant on chest"],
+          "synonyms": ["heart seizure", "cardiac episode", "chest tightness"],
+          "department": "Cardiology / Emergency Medicine",
+          "urgency": "EMERGENCY (CALL 108 / 911)",
+          "title": "Acute Myocardial Infarction (Heart Attack)",
+          "content": "Severe crushing chest pressure, pain radiating to the left arm/shoulder/jaw, cold sweating, and acute shortness of breath indicate a life-threatening heart attack.\n\nImmediate Protocol:\n1. 📞 Call emergency services (108 / 911) immediately.\n2. 🧘 Sit down and remain calm. Avoid physical exertion.\n3. 💊 Chew an Aspirin 300mg if not allergic and advised by emergency dispatch.\n4. 🚫 Do not drive yourself to the hospital."
+        },
+        {
+          "id": "hypertension_bp_management",
+          "keywords": ["blood pressure", "bp", "reduce bp", "lower bp", "high bp", "systolic", "diastolic", "trestbps"],
+          "synonyms": ["bp control", "high blood pressure", "manage bp", "drop bp"],
+          "department": "Cardiology / Internal Medicine",
+          "urgency": "Moderate / Chronic Management",
+          "title": "Hypertension (High Blood Pressure) Management",
+          "content": "Normal BP is <120/80 mmHg. Stage 1 is 130-139/80-89 mmHg. Stage 2 is ≥140/90 mmHg.\n\nLifestyle Steps to Lower BP:\n• 🥗 DASH Diet: Restrict sodium (<2g/day), increase potassium-rich foods (spinach, bananas).\n• 🏃 Cardio Exercise: 30 minutes daily of brisk walking, cycling, or swimming.\n• 🧘 Stress & Sleep: 7-8 hours of sleep and stress-reduction techniques.\n• 💊 Medications: Consult a doctor regarding ACE inhibitors, Beta-blockers, or Calcium channel blockers if BP remains >140/90."
+        },
+        {
+          "id": "cholesterol_lipid_management",
+          "keywords": ["cholesterol", "ldl", "hdl", "triglycerides", "chol", "lipid profile", "hyperlipidemia", "statins"],
+          "synonyms": ["bad cholesterol", "high lipids", "fatty blood"],
+          "department": "Cardiology / Endocrinology",
+          "urgency": "Preventive Care",
+          "title": "Lipid Profile & Serum Cholesterol Control",
+          "content": "Target Metrics:\n• Total Cholesterol: <200 mg/dL\n• LDL ('Bad' Cholesterol): <100 mg/dL (<70 mg/dL for high cardiac risk)\n• HDL ('Good' Cholesterol): >40 mg/dL (men), >50 mg/dL (women)\n• Triglycerides: <150 mg/dL\n\nManagement: Avoid trans fats, increase soluble fiber (oats, legumes, flaxseeds), omega-3 fatty acids, and take prescribed Statins under medical supervision."
+        },
+        {
+          "id": "ecg_interpretation_st_depression",
+          "keywords": ["ecg", "ekg", "restecg", "st depression", "oldpeak", "slope", "st elevation", "t wave inversion"],
+          "synonyms": ["electrocardiogram", "heart wave", "ecg reading"],
+          "department": "Cardiology",
+          "urgency": "Diagnostic Assessment",
+          "title": "ECG & ST-Segment Analysis",
+          "content": "An ECG records electrical signals passing through the heart.\n• ST Depression (oldpeak > 1.5mm): Signals subendocardial myocardial ischemia during exercise or stress.\n• ST Elevation (STEMI): Signals acute transmural myocardial infarction (Emergency).\n• Resting ECG: Evaluates baseline rhythm, conduction blocks, and ventricular hypertrophy."
+        }
+      ]
+    },
+    {
+      "department": "Neurology & Brain Health",
+      "intents": [
+        {
+          "id": "stroke_warning_fast",
+          "keywords": ["stroke", "brain attack", "face drooping", "arm weakness", "slurred speech", "paralysis", "numbness one side", "fast protocol"],
+          "synonyms": ["ischemic stroke", "hemorrhagic stroke", "transient ischemic attack", "tia"],
+          "department": "Neurology / Emergency Medicine",
+          "urgency": "CRITICAL EMERGENCY",
+          "title": "Acute Stroke Warning (F.A.S.T. Protocol)",
+          "content": "A Stroke is a brain emergency caused by a blood clot or burst vessel.\n\nF.A.S.T. Warning Checklist:\n• F (Face Drooping): One side of face droops when smiling.\n• A (Arm Weakness): One arm drifts downward when raised.\n• S (Speech Difficulty): Slurred or strange speech.\n• T (Time to call 108/911): Immediate hospital arrival enables clot-busting medication (tPA) within 3-4.5 hours!"
+        },
+        {
+          "id": "dizziness_vertigo",
+          "keywords": ["dizziness", "vertigo", "lightheaded", "spinning head", "unsteady", "feeling faint", "syncope"],
+          "synonyms": ["balance loss", "head spinning", "fainting"],
+          "department": "Neurology / ENT",
+          "urgency": "Moderate",
+          "title": "Dizziness & Vertigo Assessment",
+          "content": "Dizziness can stem from inner ear disorders (BPPV), sudden BP drop (orthostatic hypotension), dehydration, anemia, or cardiac arrhythmias.\n\nSafety Advice: Sit or lie down immediately to prevent falls. Seek emergency care if accompanied by loss of speech, numbness, or chest pain."
+        }
+      ]
+    },
+    {
+      "department": "Pulmonology & Respiratory Care",
+      "intents": [
+        {
+          "id": "shortness_of_breath_dyspnea",
+          "keywords": ["shortness of breath", "dyspnea", "breathlessness", "difficulty breathing", "wheezing", "gasping", "low oxygen", "spo2"],
+          "synonyms": ["can't breathe", "suffocating", "heavy breathing"],
+          "department": "Pulmonology / Cardiology",
+          "urgency": "Urgent / Emergency",
+          "title": "Dyspnea (Shortness of Breath) Evaluation",
+          "content": "Breathlessness can originate from pulmonary causes (Asthma, COPD, Pneumonia, Pulmonary Embolism) or cardiac causes (Heart Failure, Pulmonary Edema).\n\nImmediate Action: Sit upright, check SpO2 oxygen saturation (normal >95%). Seek immediate ER care if lips turn blue or accompanied by chest pain."
+        }
+      ]
+    },
+    {
+      "department": "Endocrinology & Diabetes",
+      "intents": [
+        {
+          "id": "diabetes_blood_sugar",
+          "keywords": ["diabetes", "blood sugar", "glucose", "fbs", "hba1c", "insulin", "high sugar", "hypoglycemia", "hyperglycemia"],
+          "synonyms": ["sugar test", "diabetic care", "fasting sugar"],
+          "department": "Endocrinology",
+          "urgency": "Chronic / Urgent if Hypo",
+          "title": "Diabetes Mellitus & Blood Glucose Management",
+          "content": "Target Ranges:\n• Fasting Glucose (fbs): 70-99 mg/dL (Normal), 100-125 mg/dL (Prediabetes), ≥126 mg/dL (Diabetes).\n• HbA1c: <5.7% (Normal), 5.7-6.4% (Prediabetes), ≥6.5% (Diabetes).\n\n🚨 Hypoglycemia Alert (<70 mg/dL): Shakiness, sweating, confusion—immediately consume 15g fast-acting sugar (fruit juice, glucose candy)."
+        }
+      ]
+    },
+    {
+      "department": "Pharmacology & Cardiac Medications",
+      "intents": [
+        {
+          "id": "aspirin_cardiac",
+          "keywords": ["aspirin", "ecosprin", "blood thinner", "antiplatelet", "disprin", "salicylic acid"],
+          "synonyms": ["aspirin dose", "blood thining pill"],
+          "department": "Pharmacology / Cardiology",
+          "urgency": "Information / Emergency Aid",
+          "title": "Aspirin (Antiplatelet Therapy)",
+          "content": "Aspirin prevents blood platelets from clumping into clots inside narrowed coronary arteries.\n• Emergency Heart Attack Dose: 300mg chewed immediately.\n• Daily Secondary Prevention: 75-100mg daily under physician prescription."
+        }
+      ]
+    }
+  ]
+}

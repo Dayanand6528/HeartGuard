@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}About HeartGuard - Heart Attack Prevention & Health Insights{% endblock %}
+
+{% block content %}
+<div class="page-header">
+    <span class="badge-risk badge-low" style="margin-bottom: 0.5rem;">Cardiology Science</span>
+    <h1 class="page-title">About HeartGuard Project</h1>
+    <p class="page-subtitle">Pioneering accessible tools for early cardiovascular disease detection and patient empowerment.</p>
+</div>
+
+<!-- Mission Section -->
+<section class="glass-panel" style="padding: 2.5rem; margin-bottom: 3rem;">
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: center;">
+        <div>
+            <h2 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--primary-cyan);">Our Core Motive</h2>
+            <p style="color: var(--text-muted); line-height: 1.7; margin-bottom: 1rem;">
+                Cardiovascular diseases (CVDs) remain the leading cause of death globally. Early diagnosis and proactive risk assessment play a decisive role in preventing acute myocardial infarctions (heart attacks).
+            </p>
+            <p style="color: var(--text-muted); line-height: 1.7;">
+                <strong>HeartGuard</strong> combines standardized medical benchmarks with advanced evaluation algorithms to analyze clinical reports in seconds. Built to guarantee total privacy and fast performance.
+            </p>
+        </div>
+        <div style="background: rgba(0, 240, 255, 0.03); border: 1px solid var(--border-glass); border-radius: var(--radius-md); padding: 2rem; text-align: center;">
+            <i class="fa-solid fa-heart-circle-bolt" style="font-size: 4rem; color: var(--pulse-red); margin-bottom: 1rem;"></i>
+            <h3 style="font-size: 1.3rem; margin-bottom: 0.5rem;">Medical Intelligence Platform</h3>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">
+                Delivering real-time cardiovascular risk stratification and secure clinical data management.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Clinical Attributes Dictionary -->
+<section style="margin-bottom: 4rem;">
+    <h2 style="font-size: 1.8rem; margin-bottom: 1.5rem; text-align: center;">Clinical Parameters & Feature Dictionary</h2>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.5rem;">
+        <div class="glass-card">
+            <h4 style="color: var(--primary-cyan); margin-bottom: 0.5rem;"><i class="fa-solid fa-user"></i> Age & Sex</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                Demographic risk factors. Men statistically face earlier onset, while risk increases significantly for both genders after age 50.
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <h4 style="color: var(--pulse-red); margin-bottom: 0.5rem;"><i class="fa-solid fa-lungs"></i> Chest Pain Type (cp)</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                Categorized into Typical Angina (substernal pressure), Atypical Angina, Non-anginal pain, and Asymptomatic (silent ischemia).
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <h4 style="color: var(--accent-warning); margin-bottom: 0.5rem;"><i class="fa-solid fa-gauge"></i> Resting Blood Pressure (trestbps)</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                Measured in mm Hg upon hospital admission. Values exceeding 140 mm Hg indicate Stage 2 hypertension.
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <h4 style="color: var(--accent-green); margin-bottom: 0.5rem;"><i class="fa-solid fa-droplet"></i> Serum Cholesterol (chol)</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                Serum cholesterol in mg/dl. High LDL levels lead to arterial plaque accumulation (atherosclerosis).
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <h4 style="color: var(--accent-blue); margin-bottom: 0.5rem;"><i class="fa-solid fa-wave-square"></i> Resting ECG (restecg)</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                Baseline electrical activity showing ST-T wave abnormalities or signs of left ventricular hypertrophy.
+            </p>
+        </div>
+
+        <div class="glass-card">
+            <h4 style="color: var(--primary-cyan); margin-bottom: 0.5rem;"><i class="fa-solid fa-bolt"></i> Max Heart Rate & ST Depression</h4>
+            <p style="color: var(--text-muted); font-size: 0.9rem; line-height: 1.5;">
+                Maximum heart rate achieved during stress testing (thalach) and exercise-induced ST segment depression (oldpeak).
+            </p>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,153 @@
+{% extends 'base.html' %}
+
+{% block title %}Admin Portal - HeartGuard System Administration{% endblock %}
+
+{% block content %}
+<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+    <div>
+        <span class="badge-risk badge-low" style="margin-bottom: 0.5rem; background: rgba(255, 190, 11, 0.15); color: var(--accent-warning);">Administrator Control Center</span>
+        <h1 style="font-size: 2.2rem; font-weight: 800;">System Management Dashboard</h1>
+        <p style="color: var(--text-muted); font-size: 0.95rem;">Monitor system database status, manage user roles, and inspect clinical prediction logs.</p>
+    </div>
+    <div class="glass-card" style="padding: 0.75rem 1.25rem; display: flex; align-items: center; gap: 0.75rem;">
+        <i class="fa-solid fa-shield-halved" style="color: var(--accent-green); font-size: 1.2rem;"></i>
+        <div>
+            <span style="font-size: 0.75rem; color: var(--text-muted); display: block;">System Status:</span>
+            <strong style="color: var(--accent-green); font-size: 0.95rem;">Active & Secure</strong>
+        </div>
+    </div>
+</div>
+
+<!-- Admin Stat Widgets -->
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+    <div class="glass-card">
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Total Registered Users</span>
+        <h2 style="font-size: 2.2rem; color: var(--primary-cyan); font-weight: 800; margin-top: 0.25rem;">{{ users|length }}</h2>
+    </div>
+    <div class="glass-card">
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Evaluation Records</span>
+        <h2 style="font-size: 2.2rem; color: var(--pulse-red); font-weight: 800; margin-top: 0.25rem;">{{ records|length }}</h2>
+    </div>
+    <div class="glass-card">
+        <span style="font-size: 0.85rem; color: var(--text-muted);">Contact Inquiries</span>
+        <h2 style="font-size: 2.2rem; color: var(--accent-warning); font-weight: 800; margin-top: 0.25rem;">{{ messages|length }}</h2>
+    </div>
+    <div class="glass-card">
+        <span style="font-size: 0.85rem; color: var(--text-muted);">AI Chat Conversations</span>
+        <h2 style="font-size: 2.2rem; color: var(--accent-green); font-weight: 800; margin-top: 0.25rem;">{{ chat_count }}</h2>
+    </div>
+</div>
+
+<!-- User Management Table -->
+<div class="glass-panel" style="padding: 2rem; margin-bottom: 3rem;">
+    <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--primary-cyan);"><i class="fa-solid fa-users-gear"></i> User Accounts & Role Permissions</h3>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Joined Date</th>
+                    <th>Current Role</th>
+                    <th>Change Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for u in users %}
+                    <tr>
+                        <td>{{ u.id }}</td>
+                        <td><strong style="color: var(--text-main);">{{ u.name }}</strong></td>
+                        <td>{{ u.email }}</td>
+                        <td>{{ u.phone or 'N/A' }}</td>
+                        <td style="font-size: 0.85rem; color: var(--text-muted);">{{ u.created_at }}</td>
+                        <td>
+                            <span class="badge-risk {% if u.role == 'admin' %}badge-high{% elif u.role == 'doctor' %}badge-moderate{% else %}badge-low{% endif %}">
+                                {{ u.role|capitalize }}
+                            </span>
+                        </td>
+                        <td>
+                            <select class="form-select admin-role-select" data-user-id="{{ u.id }}" style="padding: 0.35rem 0.65rem; font-size: 0.85rem; width: 140px;">
+                                <option value="patient" {% if u.role == 'patient' %}selected{% endif %}>Patient</option>
+                                <option value="doctor" {% if u.role == 'doctor' %}selected{% endif %}>Doctor</option>
+                                <option value="admin" {% if u.role == 'admin' %}selected{% endif %}>Admin</option>
+                            </select>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- All Prediction Records -->
+<div class="glass-panel" style="padding: 2rem; margin-bottom: 3rem;">
+    <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--primary-cyan);"><i class="fa-solid fa-notes-medical"></i> Complete Prediction Records Database</h3>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Rec #</th>
+                    <th>Patient Name</th>
+                    <th>Age/Sex</th>
+                    <th>BP / Chol</th>
+                    <th>Risk %</th>
+                    <th>Risk Level</th>
+                    <th>Doctor Notes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for r in records %}
+                    <tr>
+                        <td>{{ r.id }}</td>
+                        <td>{{ r.patient_name }}</td>
+                        <td>{{ r.age }}y / {{ 'M' if r.sex == 1 else 'F' }}</td>
+                        <td>{{ r.trestbps }} mmHg / {{ r.chol }} mg/dl</td>
+                        <td><strong style="color: var(--primary-cyan);">{{ r.risk_percentage }}%</strong></td>
+                        <td>
+                            <span class="badge-risk {% if r.prediction == 1 %}badge-high{% else %}badge-low{% endif %}">
+                                {{ r.risk_level }}
+                            </span>
+                        </td>
+                        <td style="font-size: 0.85rem; max-width: 250px;">{{ r.doctor_notes or 'No notes added' }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Contact Messages -->
+<div class="glass-panel" style="padding: 2rem; margin-bottom: 3rem;">
+    <h3 style="font-size: 1.3rem; margin-bottom: 1.5rem; color: var(--primary-cyan);"><i class="fa-solid fa-envelope-open-text"></i> Support & Inquiry Messages</h3>
+    {% if messages %}
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Subject</th>
+                        <th>Message Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for m in messages %}
+                        <tr>
+                            <td style="font-size: 0.85rem; color: var(--text-muted);">{{ m.created_at }}</td>
+                            <td>{{ m.name }}</td>
+                            <td>{{ m.email }}</td>
+                            <td><strong>{{ m.subject }}</strong></td>
+                            <td style="font-size: 0.9rem; max-width: 350px;">{{ m.message }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    {% else %}
+        <p style="color: var(--text-muted);">No contact messages received yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

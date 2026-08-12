@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}HeartGuard - Heart Attack Detection & Medical Care{% endblock %}</title>
+    <meta name="description" content="HeartGuard evaluates clinical report parameters to predict heart attack risk, offering role-based access for Patients, Doctors, and Admins alongside a dedicated AI Medical Chatbot.">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="nav-brand">
+            <i class="fa-solid fa-heart-pulse heart-beat-icon"></i>
+            <span>HeartGuard</span>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="{{ url_for('home') }}" class="nav-link {% if request.path == '/' %}active{% endif %}">Home</a></li>
+            <li><a href="{{ url_for('about') }}" class="nav-link {% if request.path == '/about' %}active{% endif %}">About</a></li>
+            <li><a href="{{ url_for('technologies') }}" class="nav-link {% if request.path == '/technologies' %}active{% endif %}">Technologies Used</a></li>
+            <li><a href="{{ url_for('dedicated_chatbot') }}" class="nav-link {% if request.path == '/chatbot' %}active{% endif %}">Medical Chatbot</a></li>
+            <li><a href="{{ url_for('contact') }}" class="nav-link {% if request.path == '/contact' %}active{% endif %}">Contact</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            {% if current_user %}
+                <a href="{{ url_for('dashboard') }}" class="btn btn-cyan"><i class="fa-solid fa-chart-line"></i> Dashboard ({{ current_user.role|capitalize }})</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-outline"><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-outline"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                <a href="{{ url_for('signup') }}" class="btn btn-cyan"><i class="fa-solid fa-user-plus"></i> Register</a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <!-- Flash Messages -->
+    <div class="main-content" style="padding-bottom: 0;">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">
+                        <i class="fa-solid fa-circle-info"></i> {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- Main Page Content -->
+    <main class="main-content">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Floating Offline Medical Chatbot Widget -->
+    <div class="floating-chat-btn" id="floatingChatBtn" title="Open HeartGuard Medical Assistant">
+        <i class="fa-solid fa-robot"></i>
+    </div>
+
+    <div class="floating-chat-window glass-panel" id="floatingChatWindow">
+        <div class="chatbot-header">
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <i class="fa-solid fa-heart-pulse" style="color: var(--pulse-red);"></i>
+                <strong style="font-size: 0.95rem;">HeartGuard AI Doctor</strong>
+            </div>
+            <i class="fa-solid fa-xmark" id="closeFloatChat" style="cursor: pointer; font-size: 1.1rem; color: var(--text-muted);"></i>
+        </div>
+        <div class="chatbot-messages" id="floatChatMessages">
+            <div class="message message-bot">
+                Hello! 👋 I am your HeartGuard Medical AI Assistant. How can I help you with heart symptoms, BP readings, or prevention advice today?
+            </div>
+        </div>
+        <div class="chat-pills">
+            <div class="chat-pill" onclick="fillChatInput('What are heart attack warning signs?')">Warning Signs</div>
+            <div class="chat-pill" onclick="fillChatInput('What is normal blood pressure?')">Normal BP</div>
+            <div class="chat-pill" onclick="fillChatInput('How to reduce cholesterol?')">Cholesterol</div>
+        </div>
+        <div class="chatbot-input-bar">
+            <input type="text" id="floatChatInput" class="form-control" placeholder="Ask medical question...">
+            <button class="btn btn-cyan" id="sendFloatMsg"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-links">
+            <a href="{{ url_for('home') }}" class="footer-link">Home</a>
+            <a href="{{ url_for('about') }}" class="footer-link">About Project</a>
+            <a href="{{ url_for('technologies') }}" class="footer-link">Technologies Used</a>
+            <a href="{{ url_for('dedicated_chatbot') }}" class="footer-link">AI Chatbot</a>
+            <a href="{{ url_for('contact') }}" class="footer-link">Contact Support</a>
+        </div>
+        <p>© 2026 HeartGuard Medical System. All Rights Reserved.</p>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
